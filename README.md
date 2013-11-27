@@ -1,4 +1,4 @@
-# generator-project [![Build Status](https://secure.travis-ci.org/ianwremmel/generator-project.png?branch=master)](https://travis-ci.org/ianwremmel/generator-project)
+# generator-project 
 
 A generator for [Yeoman](http://yeoman.io).
 
