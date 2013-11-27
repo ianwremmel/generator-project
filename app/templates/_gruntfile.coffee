@@ -9,7 +9,7 @@ module.expors = (grunt) ->
   <% if (enableTests) { %>
   grunt.registerTask 'test' [
     'build'
-    # TODO configure the remainder of your test steps here
+    'mochacli'
   ]
   <% } %>
   grunt.initConfig
@@ -25,4 +25,13 @@ module.expors = (grunt) ->
         files: [
           'dist/<%= appname %>.js': 'src/index.js'
         ]
+    <% } if (enableTests) { %>
+    mochacli:
+      spec:
+        dist: 'test/test.coffee'
+        options:
+          compilers:[
+            'coffee:coffee-script'
+          ]
+          reporter: 'spec'
     <% } %>
