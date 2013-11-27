@@ -1,0 +1,15 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.1",<% if (enableTests) { %>
+  "scripts": {
+    "test": "grunt test"
+  },<% } %>
+  "main": "src/index.js",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",<% if (enableBrowserSupport) { %>
+    "grunt-browserify": "~1.2.0",<% } %>
+    "bower": "~0.9.2",
+    "load-grunt-tasks": "~0.2.0"
+  }
+}
