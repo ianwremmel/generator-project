@@ -58,4 +58,5 @@ ProjectGenerator.prototype.projectfiles = function projectfiles() {
   }
   this.template('_jshintrc', '.jshintrc');
   this.template('_gruntfile.coffee', 'Gruntfile.coffee');
+  this.copy('LICENSE', 'LICENSE');
 };

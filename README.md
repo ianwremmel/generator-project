@@ -32,6 +32,7 @@ It is unlikely to ever end up in npm.
 #### Assumptions
 
 - If you're doing anything in the frontend, you'll be using browserify.
+- Your name is `Ian W. Remmel` and all your projects will be `Copyright (c) Ian W. Remmel`
 
 ## License
 
