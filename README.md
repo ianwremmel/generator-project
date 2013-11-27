@@ -11,10 +11,10 @@ Make sure you've install Yeoman.
 $ npm install -g yo
 ```
 
-To install generator-project from npm, run:
+To install generator-project fork this repository, clone your repository, and, in the new directory, run:
 
 ```
-$ npm install -g generator-project
+$ npm link
 ```
 
 Finally, initiate the generator:
