@@ -32,7 +32,7 @@ It is unlikely to ever end up in npm.
 #### Assumptions
 
 - If you're doing anything in the frontend, you'll be using browserify.
-- Your name is `Ian W. Remmel` and all your projects will be `Copyright (c) Ian W. Remmel`
+- Your name is `Ian W. Remmel` and all your projects will be `Copyright (c) Ian W. Remmel`.
 
 #### TODO
 
@@ -49,6 +49,8 @@ It is unlikely to ever end up in npm.
   - uglification
   - revving
   - point server at built files
+  - point server at static assets
+    - build process should place all static assets in `/dist`
 - Add live-reload to dev-mode server, grunt watch
 - Add grunt watch
 - Add heroku support
