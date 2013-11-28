@@ -1,5 +1,5 @@
 # Generated on <%= (new Date()).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
-module.expors = (grunt) ->
+module.exports = (grunt) ->
   require('load-grunt-tasks')(grunt)
 
   grunt.registerTask 'build', [
@@ -19,15 +19,17 @@ module.expors = (grunt) ->
       app:
         options:
           jshintrc:'<%= multiple ? "src/app/" : "" %>.jshintrc'
-        files: [
-          'src/<%= multiple ? "app/" : "" %>**/*.js'
-        ] <% } if (enableServerSupport) { %>
+        files:
+          src: [
+            'src/<%= multiple ? "app/" : "" %>**/*.js'
+          ] <% } if (enableServerSupport) { %>
       server:
         options:
           jshintrc: '<%= multiple ? "src/server/" : "" %>.jshintrc'
-        files: [
-          'src/<%= multiple ? "server/" : "" %>**/*.js'
-        ]
+        files:
+          src: [
+            'src/<%= multiple ? "server/" : "" %>**/*.js'
+          ]
       <% } %><% if (enableBrowserSupport) { %>
     browserify:
       dist:
