@@ -13,19 +13,26 @@ module.expors = (grunt) ->
   ]
   <% } %>
   grunt.initConfig
-    jshint:
-      options:
-        jshintrc: '.jshintrc'
-      src: [
-        'src/**/*.js'
-      ]
-    <% if (enableBrowserSupport) { %>
+    jshint: <% if (enableBrowserSupport) { %>
+      app:
+        options:
+          jshintrc: <%= multiple ? 'src/app/.jshintrc' : '.jshintrc' %>
+        files: [
+          'src/<%= multiple ? "app/" : "" %>**/*.js'
+        ] <% } if (enableServerSupport) { %>
+      server:
+        options:
+          jshintrc: <%= multiple ? 'src/server/.jshintrc' : '.jshintrc' %>
+        files: [
+          'src/<%= multiple ? "server/" : "" %>**/*.js'
+        ]
+      <% } %><% if (enableBrowserSupport) { %>
     browserify:
       dist:
         files: [
-          'dist/<%= appname %>.js': 'src/index.js'
+          'dist/<%= appname %>.js': 'src/<%= multiple ? "app" : "" %>/index.js'
         ]
-    <% } if (enableTests) { %>
+    <% } %><% if (enableTests) { %>
     mochacli:
       spec:
         dist: 'test/test.coffee'

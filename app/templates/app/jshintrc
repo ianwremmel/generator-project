@@ -1,7 +1,8 @@
 {
-    "node": true,
-    "browser": <%= enableBrowserSupport %>,
+    "node": false,
+    "browser": true,
     "esnext": true,
+    "strict": true,
     "bitwise": true,
     "camelcase": true,
     "curly": true,

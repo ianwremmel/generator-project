@@ -1,6 +1,11 @@
 {
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.1",
+  <% if (!enableServerSupport) { %>
+  "devDependencies": {
+     "less": "~1.5.1"
+  },
+  <% } %>
   "dependencies": {}
 }
 
