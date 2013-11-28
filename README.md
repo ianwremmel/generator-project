@@ -55,6 +55,7 @@ It is unlikely to ever end up in npm.
 - Add grunt watch
 - Add heroku support
   - if (multiple), create the server directory as a submodule
+- Make templates readable (instead of output)
 
 ## License
 

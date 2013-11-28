@@ -2,27 +2,29 @@
 module.expors = (grunt) ->
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask 'build' [
+  grunt.registerTask 'build', [
     'jshint'<% if (enableBrowserSupport) { %>
     'browserify'<% } %>
   ]
   <% if (enableTests) { %>
-  grunt.registerTask 'test' [
+  grunt.registerTask 'test', [
     'build'
     'mochacli'
   ]
   <% } %>
   grunt.initConfig
-    jshint: <% if (enableBrowserSupport) { %>
+    jshint:
+      options:
+        reporter: require('jshint-stylish')<% if (enableBrowserSupport) { %>
       app:
         options:
-          jshintrc: <%= multiple ? 'src/app/.jshintrc' : '.jshintrc' %>
+          jshintrc:'<%= multiple ? "src/app/" : "" %>.jshintrc'
         files: [
           'src/<%= multiple ? "app/" : "" %>**/*.js'
         ] <% } if (enableServerSupport) { %>
       server:
         options:
-          jshintrc: <%= multiple ? 'src/server/.jshintrc' : '.jshintrc' %>
+          jshintrc: '<%= multiple ? "src/server/" : "" %>.jshintrc'
         files: [
           'src/<%= multiple ? "server/" : "" %>**/*.js'
         ]
