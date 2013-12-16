@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.1",<% if (enableTests || enableServerSupport) { %>
   "scripts": {<% if (enableServerSupport) { %>
-    "start": "src/<%= multiple ? 'server/' : '' %>server.js"<% } %><% if (enableTests) { %>,
+    "start": "node src/<%= multiple ? 'server/' : '' %>server.js"<% } %><% if (enableTests) { %>,
     "test": "./node_modules/grunt-cli/bin/grunt test"<% } %>
   },<% } %><% if (enableServerSupport) { %>
   "dependencies": {
