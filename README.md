@@ -36,26 +36,11 @@ It is unlikely to ever end up in npm.
 
 #### TODO
 
-- Add favicon support
-  - dev mode server should point at a single file
-  - prod mode server should point at a built file
-  - grunt should build favicon
-- Add library layout
-  - library is a branching option: either it's a library or it has a client and/or server
 - Expand client build process
-  - browserify
-  - minification
   - spritification
-  - uglification
-  - revving
-  - point server at built files
-  - point server at static assets
-    - build process should place all static assets in `/dist`
 - Add live-reload to dev-mode server, grunt watch
-- Add grunt watch
 - Add heroku support
   - if (multiple), create the server directory as a submodule
-- Make templates readable (instead of output)
 
 ## License
 
