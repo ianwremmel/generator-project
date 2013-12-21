@@ -52,7 +52,7 @@ app.configure('development', <% if (enableTests) { %>'testing'<% } %>, function(
     <% } %>
   }
 
-  app.get('/scripts/app.js', browserify('../app/scripts/app.js', {
+  app.get('/scripts/main.js', browserify('../app/scripts/main.js', {
     basedir: '.',
     noParse: ['jquery'],
     transform: ['debowerify']
