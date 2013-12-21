@@ -194,7 +194,7 @@ module.exports = (grunt) ->
       prod:
         src: [
           '<%%= yeoman.appDist %>/*/**/*.*'
-          '!<%= yeoman.appDist %>/images/favicons/**'
+          '!<%%= yeoman.appDist %>/images/favicons/**'
         ]
 
     filerev_apply:
