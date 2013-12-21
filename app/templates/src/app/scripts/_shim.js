@@ -7,16 +7,16 @@
 
 <% if (includeBootstrap || includeBackone) { %>
 var $ = require('jquery');
-<% } %>
+<% }
 
-<% if (includeBackbone) { %>}
+if (includeBackbone) { %>
 var Backbone = require('backbone');
 
 // Tell Backbone where to find jQuery.
 Backbone.$ = $;
-<% } %>
+<% }
 
-<% if (includeBootstrap) { %>
+if (includeBootstrap) { %>
 // Include Bootstrap
 require('../../../bower_components/bootstrap/js/transition.js');
 require('../../../bower_components/bootstrap/js/alert.js');

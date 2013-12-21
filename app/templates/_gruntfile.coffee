@@ -68,47 +68,52 @@ module.exports = (grunt) ->
 
     clean:
       dist: [
-        '<%= yeoman.dist %>'
+        '<%%= yeoman.dist %>'
       ]
       tmp: [
         '.tmp'
       ]
+      <% if (includeBootstrap) { %>
+      bootstrap: [
+        '<%%= yeoman.appSrc %>/styles/bootstrap.less'
+      ]
+      <% } %>
 
     jshint:
       options:
         reporter: require('jshint-stylish')
       app:
         options:
-          jshintrc:'<%= yeoman.appSrc %>/.jshintrc'
+          jshintrc:'<%%= yeoman.appSrc %>/.jshintrc'
         files:
           src: [
-            '<%= yeoman.appSrc %>/**/*.js'
+            '<%%= yeoman.appSrc %>/**/*.js'
           ]
       server:
         options:
-          jshintrc: '<%= yeoman.server %>/.jshintrc'
+          jshintrc: '<%%= yeoman.server %>/.jshintrc'
         files:
           src: [
-            '<%= yeoman.server %>/**/*.js'
+            '<%%= yeoman.server %>/**/*.js'
           ]
 
     preprocess:
       dev:
-        src: '<%= yeoman.staticSrc %>/index.html'
-        dest: '<%= yeoman.staticDist %>/index.html'
+        src: '<%%= yeoman.staticSrc %>/index.html'
+        dest: '<%%= yeoman.staticDist %>/index.html'
         options:
           context:
             NODE_ENV: 'development'
       <% if (enableTests) { %>
       testing:
-        src: '<%= yeoman.staticSrc %>/index.html'
-        dest: '<%= yeoman.staticDist %>/index.html'
+        src: '<%%= yeoman.staticSrc %>/index.html'
+        dest: '<%%= yeoman.staticDist %>/index.html'
         options:
           context:
             NODE_ENV: 'testing'
       <% } %>
       prod:
-        src: '<%= yeoman.staticSrc %>/index.html'
+        src: '<%%= yeoman.staticSrc %>/index.html'
         dest: '.tmp//index.html'
         options:
           context:
@@ -122,22 +127,22 @@ module.exports = (grunt) ->
           'images/**/*'
           '!images/favicons/**'
         ]
-        dest: '<%= yeoman.appDist %>'
+        dest: '<%%= yeoman.appDist %>'
 
     <% if (includeBootstrap) { %>
     customize_bootstrap:
       all:
         options:
           components: 'bower_components'
-          src: '<%= yeoman.appSrc %>/styles/bootstrap'
-          dest: '<%= yeoman.appSrc %>/styles'
-          local: '<%= yeoman.appSrc %>/styles/local.less'
+          src: '<%%= yeoman.appSrc %>/styles/bootstrap'
+          dest: '<%%= yeoman.appSrc %>/styles'
+          local: '<%%= yeoman.appSrc %>/styles/local.less'
     <% } %>
 
     less:
       prod:
         files:
-          '.tmp/styles/main.less.css': '<%= yeoman.appSrc %>/styles/main.less'
+          '.tmp/styles/main.less.css': '<%%= yeoman.appSrc %>/styles/main.less'
 
     autoprefixer:
       options:
@@ -149,12 +154,12 @@ module.exports = (grunt) ->
     cssmin:
       prod:
         files:
-          '<%= yeoman.appDist %>/styles/main.css': '.tmp/styles/main.css'
+          '<%%= yeoman.appDist %>/styles/main.css': '.tmp/styles/main.css'
 
     browserify:
       prod:
         files:
-          '.tmp/scripts/main.js': '<%= yeoman.appSrc %>/scripts/main.js'
+          '.tmp/scripts/main.js': '<%%= yeoman.appSrc %>/scripts/main.js'
         options:
           transform: [
             'debowerify'
@@ -163,7 +168,7 @@ module.exports = (grunt) ->
     uglify:
       prod:
         files:
-          '<%= yeoman.appDist %>/scripts/main.js': '.tmp/scripts/main.js'
+          '<%%= yeoman.appDist %>/scripts/main.js': '.tmp/scripts/main.js'
         options:
           compress: true
 
@@ -171,7 +176,7 @@ module.exports = (grunt) ->
       prod:
         files: [
           expand: true
-          cwd: '<%= yeoman.appSrc %>/images'
+          cwd: '<%%= yeoman.appSrc %>/images'
           src: ['**/*.{png,jpg,gif}']
           dest: '.tmp/images'
         ]
@@ -183,29 +188,29 @@ module.exports = (grunt) ->
         HTMLPrefix: '/images/favicons/'
       prod:
         src: '.tmp/images/favicons/favicon.png'
-        dest: '<%= yeoman.appDist %>/images/favicons'
+        dest: '<%%= yeoman.appDist %>/images/favicons'
 
     filerev:
       prod:
         src: [
-          '<%= yeoman.appDist %>/*/**/*.*'
+          '<%%= yeoman.appDist %>/*/**/*.*'
           '!<%= yeoman.appDist %>/images/favicons/**'
         ]
 
     filerev_apply:
       prod:
         options:
-          prefix: '<%= yeoman.appDist %>'
+          prefix: '<%%= yeoman.appDist %>'
         files: [
           expand: true
-          cwd: '<%= yeoman.appDist %>'
+          cwd: '<%%= yeoman.appDist %>'
           src: ['**/*.{html,js,css}']
-          dest: '<%= yeoman.appDist %>'
+          dest: '<%%= yeoman.appDist %>'
         ]
 
     userev:
       prod:
-        src: '<%= yeoman.appDist %>/index.html'
+        src: '<%%= yeoman.appDist %>/index.html'
 
     htmlmin:
       prod:
@@ -216,7 +221,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: '.tmp/'
           src: ['**/*.html']
-          dest: '<%= yeoman.staticDist %>'
+          dest: '<%%= yeoman.staticDist %>'
         ]
 
     nodemon:
@@ -245,7 +250,7 @@ module.exports = (grunt) ->
     express:
       testing:
         options:
-          script: '<%= yeoman.server %>/server.js'
+          script: '<%%= yeoman.server %>/server.js'
           node_env: 'testing'
 
     mocha:
@@ -258,7 +263,7 @@ module.exports = (grunt) ->
 
     watch:
       static:
-        files: ['<%= yeoman.staticSrc %>/**/*.html']
+        files: ['<%%= yeoman.staticSrc %>/**/*.html']
         tasks: ['prepocess:dev']
 
     concurrent:
@@ -280,6 +285,9 @@ module.exports = (grunt) ->
   grunt.registerTask 'before-build', [
     'clean'
     'jshint'
+    <% if (includeBootstrap) { %>
+    'customize_bootstrap'
+    <% } %>
   ]
 
   grunt.registerTask 'after-build', [
@@ -289,9 +297,6 @@ module.exports = (grunt) ->
   grunt.registerTask 'dev-build', [
     'before-build'
     'preprocess:dev'
-    <% if (includeBootstrap) { %>
-    'customize_bootstrap'
-    <% } %>
     'after-build'
   ]
 
