@@ -73,8 +73,8 @@ ProjectGenerator.prototype.projectfiles = function projectfiles() {
 
 ProjectGenerator.prototype.server = function server() {
   this.mkdir('src/server');
-  this.template('server/_server.js', 'src/server/server.js');
-  this.template('server/_jshintrc', 'src/server/.jshintrc');
+  this.template('src/server/_server.js', 'src/server/server.js');
+  this.copy('src/server/jshintrc', 'src/server/.jshintrc');
 };
 
 ProjectGenerator.prototype.app = function app() {
@@ -100,7 +100,7 @@ ProjectGenerator.prototype.app = function app() {
     this.copy('src/app/styles/local.less', 'src/app/styles/local.less');
   }
 
-  this.copy('app/jshintrc', 'src/app/.jshintrc');
+  this.copy('src/app/jshintrc', 'src/app/.jshintrc');
 };
 
 ProjectGenerator.prototype.test = function test() {
@@ -112,4 +112,4 @@ ProjectGenerator.prototype.test = function test() {
     this.template('test/spec/_test.js', 'test/spec/test.js');
     this.template('test/unit/_test.js', 'test/unit/test.js');
   }
-}
+};
