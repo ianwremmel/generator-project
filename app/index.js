@@ -29,13 +29,23 @@ ProjectGenerator.prototype.askFor = function askFor() {
     default: true
   }, {
     type: 'confirm',
-    name: 'enableBrowserSupport',
-    message: 'Will this project run in a web browser?',
-    default: true
-  }, {
-    type: 'confirm',
     name: 'enableServerSupport',
     message: 'Will this project provide its own server?',
+    default: false
+  }, {
+    type: 'confirm',
+    name: 'includeBackbone',
+    message: 'Would you like Backbone installed?',
+    default: false
+  }, {
+    type: 'confirm',
+    name: 'includeBootstrap',
+    message: 'Would you like Bootstrap installed?',
+    default: false
+  }, {
+    type: 'confirm',
+    name: 'includeExamples',
+    message: 'Would you like to include examples?',
     default: false
   }];
 
@@ -60,11 +70,6 @@ ProjectGenerator.prototype.projectfiles = function projectfiles() {
 
   this.template('_package.json', 'package.json');
   this.template('_gruntfile.coffee', 'Gruntfile.coffee');
-};
-
-ProjectGenerator.prototype.lib = function lib() {
-// TODO lib needs to be branched: either it's a library project or it has a
-// app and/or server.
 };
 
 ProjectGenerator.prototype.server = function server() {

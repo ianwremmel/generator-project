@@ -1,6 +1,7 @@
 'use strict';
 
 var http = require('http');
+var path = require('path');
 
 var express = require('express');
 
@@ -24,14 +25,32 @@ else {
 // -------------------
 app.use(express.compress());
 
-<% if (enableBrowserSupport) { %>
 // Configure main asset routes
 // ---------------------------
-if (app.get('env') === 'development') {
-  var path = require('path');
-
+app.configure('development', <% if (enableTests) { %>'testing'<% } %>, function() {
   var browserify = require('browserify-middleware');
   var less = require('less-middleware');
+
+  if (app.get('env') === 'testing') {
+    var testEnv = browserify.settings.env('test');
+    testEnv({
+      cache: false,
+      minify: false,
+      gzip: false,
+      debug: true
+    });
+
+    app.use('/bower_components', express.static(path.join(__dirname, '../../bower_components')));
+    app.use('/node_modules', express.static(path.join(__dirname, '../../node_modules')));
+
+    <% if (enableTests) { %>
+    app.get('/scripts/test.js', browserify('../../test/spec/test.js', {
+      basedir: '.',
+      noParse: ['jquery'],
+      transform: ['debowerify']
+    }));
+    <% } %>
+  }
 
   app.get('/scripts/app.js', browserify('../app/scripts/app.js', {
     basedir: '.',
@@ -40,18 +59,24 @@ if (app.get('env') === 'development') {
   }));
 
   app.use(less({
+    debug: true,
+    prefix: '/styles',
+    dest: path.join(__dirname, '../../dist/app/styles'),
     src: path.join(__dirname, '../app/styles')
   }));
 
-  app.get('/', function(req, res) {
-    res.sendfile(path.join(__dirname, '../app/index.html'));
-  });
-}
-else {
-  throw new Error('generator-project has not been configured to serve built files.');
-}
+  app.use(express.favicon(path.join(__dirname, '../app/images/favicons/favicon.png')));
+});
+
+<% if (enableServerSupport) %>
+app.configure('production', function() {
+  app.use(express.favicon(path.join(__dirname, '../../dist/app/images/favicons/favicon.ico')));
+});
 <% } %>
 
+app.use(express.static(path.join(__dirname, '../../dist/app')));
+
+<% if (enableServerSupport) %>
 // Enable full HTTP support
 // ------------------------
 
@@ -70,6 +95,7 @@ app.use(express.query());
 // If you need session support, take a look at the documentation at
 // http://www.senchalabs.org/connect/ for more information.
 
+<% } %>
 // Start the server
 // ----------------
 var port = app.get('port') || 3000;
