@@ -69,6 +69,7 @@ ProjectGenerator.prototype.projectfiles = function projectfiles() {
   this.template('_package.json', 'package.json');
   this.template('_bower.json', 'bower.json');
   this.template('_gruntfile.coffee', 'Gruntfile.coffee');
+  this.template('_README.md', 'README.md');
 };
 
 ProjectGenerator.prototype.server = function server() {
