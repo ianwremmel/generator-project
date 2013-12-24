@@ -64,6 +64,7 @@ ProjectGenerator.prototype.projectfiles = function projectfiles() {
   this.mkdir('src');
 
   this.copy('editorconfig', '.editorconfig');
+  this.copy('gitignore', '.gitignore');
   this.copy('LICENSE', 'LICENSE');
 
   this.template('_package.json', 'package.json');
