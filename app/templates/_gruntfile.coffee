@@ -267,10 +267,13 @@ module.exports = (grunt) ->
         tasks: ['prepocess:dev']
 
     concurrent:
-      dev: [
-        'watch:static'
-        'nodemon:dev'
-      ]
+      dev:
+        tasks: [
+          'watch:static'
+          'nodemon:dev'
+        ]
+        options:
+          logConcurrentOutput: true
       build: [
         'build-styles'
         'build-scripts'

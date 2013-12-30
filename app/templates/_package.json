@@ -13,6 +13,8 @@
     <% }
     if (includeBackbone) { %>
     "backbone": "~1.1.0",
+    "backbone.marionette": "git://github.com/marionettejs/backbone.marionette.git#v1.4.1",
+    "backbone.wreqr": "~0.2.0",
     "lodash": "~2.4.1",
     <% } %>
     "express": "~3.4.7"

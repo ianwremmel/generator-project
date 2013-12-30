@@ -67,13 +67,11 @@ app.configure('development', <% if (enableTests) { %>'testing'<% } %>, function(
 
   app.use(express.favicon(path.join(__dirname, '../app/images/favicons/favicon.png')));
 });
-
 <% if (enableServerSupport) { %>
 app.configure('production', function() {
   app.use(express.favicon(path.join(__dirname, '../../dist/app/images/favicons/favicon.ico')));
 });
 <% } %>
-
 app.use(express.static(path.join(__dirname, '../../dist/app')));
 
 <% if (enableServerSupport) { %>

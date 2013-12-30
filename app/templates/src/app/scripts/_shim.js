@@ -14,6 +14,10 @@ var Backbone = require('backbone');
 
 // Tell Backbone where to find jQuery.
 Backbone.$ = $;
+
+// Tell Backbone where to find wreqr (Marionette is supposed to take care of
+// this, but it doesn't).
+Backbone.Wreqr = require('backbone.wreqr');
 <% }
 
 if (includeBootstrap) { %>
