@@ -5,7 +5,7 @@
 
 'use strict';
 
-<% if (includeBootstrap || includeBackone) { %>
+<% if (includeBootstrap || includeBackbone) { %>
 var $ = require('jquery');
 <% }
 
