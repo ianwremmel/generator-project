@@ -45,3 +45,7 @@ It is unlikely to ever end up in npm.
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ianwremmel/generator-project/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
