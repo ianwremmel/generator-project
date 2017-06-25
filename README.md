@@ -1,5 +1,7 @@
 # generator-project 
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ianwremmel/generator-project.svg)](https://greenkeeper.io/)
+
 A generator for [Yeoman](http://yeoman.io).
 
 
